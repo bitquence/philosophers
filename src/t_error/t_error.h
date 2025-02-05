@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   t_error.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jamar <jamar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 03:24:57 by jamar             #+#    #+#             */
-/*   Updated: 2025/02/05 03:26:00 by jamar            ###   ########.fr       */
+/*   Created: 2025/02/05 18:15:33 by jamar             #+#    #+#             */
+/*   Updated: 2025/02/05 18:26:25 by jamar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_error/t_error.h"
-#include "t_config/t_config.h"
+#ifndef T_ERROR_H
+# define T_ERROR_H
 
-#include <stdlib.h>
-#include <stdio.h>
+typedef enum e_error {
+	NO_ERROR = 0,
+	E_BAD_USAGE
+}	t_error;
 
-int	main(int argc, char *argv[]) {
-	t_error		err;
-	t_config	config;
-
-	err = config_from_args(argc, argv, &config);
-	if (err != NO_ERROR)
-		return (EXIT_FAILURE);
-	printf("philosophers\n");
-}
+#endif // T_ERROR_H

@@ -5,7 +5,7 @@ SRCS_DIR := ./src
 
 CC := cc
 VPATH := $(SRCS_DIR)
-INCLUSION_DIRS := -Iinclude
+INCLUSION_DIRS := -Isrc
 ifndef RELEASE_MODE
 	DEBUGGER ?= gdb
 	ADD_DEBUGGING_INFO := -g$(DEBUGGER)
@@ -16,7 +16,9 @@ CFLAGS += -Wall -Wextra -Werror -MMD -MP $(ENABLE_OPTIMIZATIONS) $(ADD_DEBUGGING
 #LDFLAGS :=
 #LDLIBS :=
 
-SRCS := $(NAME).c
+SRCS := $(NAME).c \
+	t_config/t_config.c
+
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)
 

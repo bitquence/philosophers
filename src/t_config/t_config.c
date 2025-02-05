@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   t_config.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jamar <jamar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 03:24:57 by jamar             #+#    #+#             */
-/*   Updated: 2025/02/05 03:26:00 by jamar            ###   ########.fr       */
+/*   Created: 2025/02/05 18:20:48 by jamar             #+#    #+#             */
+/*   Updated: 2025/02/05 18:25:33 by jamar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./t_config.h"
 #include "t_error/t_error.h"
-#include "t_config/t_config.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-
-int	main(int argc, char *argv[]) {
-	t_error		err;
-	t_config	config;
-
-	err = config_from_args(argc, argv, &config);
-	if (err != NO_ERROR)
-		return (EXIT_FAILURE);
-	printf("philosophers\n");
+t_error	config_from_args(int argc, char *argv[], t_config *cfg_out)
+{
+	if (argc != 5 && argc != 6)
+		return (E_BAD_USAGE);
+	(void)argv;
+	(void)cfg_out;
+	return (NO_ERROR);
 }
