@@ -15,7 +15,9 @@
 
 typedef enum e_error {
 	NO_ERROR = 0,
-	E_BAD_USAGE
+	E_BAD_USAGE,
+	E_INVALID_ARGUMENT,
+	E_OUT_OF_RANGE,
 }	t_error;
 
 #endif // T_ERROR_H
