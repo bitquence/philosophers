@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "t_error/t_error.h"
-#include "t_config/t_config.h"
+#include "config/config.h"
 
 #include <stdlib.h>
 #include <stdio.h>

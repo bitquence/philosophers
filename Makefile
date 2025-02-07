@@ -17,7 +17,7 @@ CFLAGS += -Wall -Wextra -Werror -MMD -MP $(ENABLE_OPTIMIZATIONS) $(ADD_DEBUGGING
 #LDLIBS :=
 
 SRCS := $(NAME).c \
-	t_config/t_config.c t_config/parse_uint32.c
+	config/config.c config/parse_uint32.c
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)

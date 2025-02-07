@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_config.h                                         :+:      :+:    :+:   */
+/*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jamar <jamar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_CONFIG_H
-# define T_CONFIG_H
+#ifndef CONFIG_H
+# define CONFIG_H
 
 # include "t_error/t_error.h"
 
@@ -29,4 +29,4 @@ typedef struct s_config {
 
 t_error	config_from_args(int argc, char *argv[], t_config *cfg_out);
 
-#endif // T_CONFIG_H
+#endif // CONFIG_H
