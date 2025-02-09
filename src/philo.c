@@ -12,15 +12,21 @@
 
 #include "t_error/t_error.h"
 #include "config/config.h"
+#include "simulation/simulation.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	main(int argc, char *argv[]) {
-	t_error		err;
-	t_config	config;
+int	main(int argc, char *argv[])
+{
+	t_error			err;
+	t_config		config;
+	t_simulation	sim;
 
 	err = config_from_args(argc, argv, &config);
+	if (err != NO_ERROR)
+		return (EXIT_FAILURE);
+	err = simulation_new(config, &sim);
 	if (err != NO_ERROR)
 		return (EXIT_FAILURE);
 	printf("%s %u %u %u %u %u\n", argv[0], config.philosopher_count, config.time_to_die, config.time_to_eat, config.time_to_sleep, config.min_meals);

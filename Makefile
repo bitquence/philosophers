@@ -17,7 +17,8 @@ CFLAGS += -Wall -Wextra -Werror -MMD -MP $(ENABLE_OPTIMIZATIONS) $(ADD_DEBUGGING
 #LDLIBS :=
 
 SRCS := $(NAME).c \
-	config/config.c config/parse_uint32.c
+	config/config.c config/parse_uint32.c \
+	simulation/simulation_new.c simulation/assign_forks.c simulation/simulation_destroy.c
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)

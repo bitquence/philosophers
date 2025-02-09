@@ -18,6 +18,13 @@ typedef enum e_error {
 	E_BAD_USAGE,
 	E_INVALID_ARGUMENT,
 	E_OUT_OF_RANGE,
+	// system calls
+	E_PTHREAD_MUTEX_INIT,
+	E_PTHREAD_MUTEX_LOCK,
+	E_PTHREAD_MUTEX_UNLOCK,
+	E_PTHREAD_MUTEX_DESTROY,
+	// library functions
+	E_MALLOC,
 }	t_error;
 
 #endif // T_ERROR_H
