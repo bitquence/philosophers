@@ -23,6 +23,7 @@ typedef enum e_error {
 	E_PTHREAD_MUTEX_LOCK,
 	E_PTHREAD_MUTEX_UNLOCK,
 	E_PTHREAD_MUTEX_DESTROY,
+	E_PTHREAD_CREATE,
 	// library functions
 	E_MALLOC,
 }	t_error;
