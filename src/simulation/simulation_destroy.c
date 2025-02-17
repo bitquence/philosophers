@@ -32,6 +32,7 @@ static void	destroy_forks(pthread_mutex_t **forks, uint32_t count)
 		pthread_mutex_destroy(&(*forks)[i]);
 		i++;
 	}
+	free(*forks);
 	*forks = NULL;
 }
 
