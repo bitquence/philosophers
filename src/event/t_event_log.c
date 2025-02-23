@@ -8,13 +8,13 @@ t_error	event_log_append(t_event_log *log, t_event event)
 	new_node = evl_new(event);
 	if (!new_node)
 		return (E_MALLOC);
-	if (log->head == NULL)
+	if (log->head == NULL || log->tail == NULL)
 	{
-		evl_push_link_front(&log->head, new_node);
-		log->tail = log->head;
+		evl_push_link_back(&log->tail, new_node);
+		log->head = log->tail;
 		return (NO_ERROR);
 	}
-	evl_push_link_front(&log->head, new_node);
+	evl_push_link_back(&log->tail, new_node);
 	return (NO_ERROR);
 }
 

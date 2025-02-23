@@ -28,12 +28,19 @@ t_event_node *evl_pop_link_front(t_event_node **lst)
 	return (backup);
 }
 
-void	evl_push_link_front(t_event_node **lst, t_event_node *link)
+void	evl_push_link_back(t_event_node **tail, t_event_node *link)
 {
 	if (!link)
 		return;
-	link->next = *lst;
-	*lst = link;
+	while ((*tail) && (*tail)->next)
+		(*tail) = (*tail)->next;
+	if (!*tail)
+		*tail = link;
+	else
+	{
+		( *tail )->next = link;
+		*tail = link;
+	}
 }
 
 void	evl_clear(t_event_node **lst)
