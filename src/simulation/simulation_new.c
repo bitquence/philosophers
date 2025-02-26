@@ -80,7 +80,7 @@ static t_error	populate_philosophers(t_simulation *sim, uint32_t count)
 			.id = i + 1,
 			.config = &sim->config,
 			.last_error_mtx = &sim->last_error_mtx,
-			.last_error = &sim->last_error,
+			.last_error = NO_ERROR,
 			.sim_state_mtx = &sim->sim_state_mtx,
 			.sim_state = &sim->sim_state,
 			.event_log_mtx = &sim->event_log_mtx,
