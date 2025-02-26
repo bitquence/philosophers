@@ -22,7 +22,7 @@ typedef struct s_simulation {
 	t_simulation_state	sim_state;
 
 	pthread_mutex_t		event_log_mtx;
-	t_event_log			*event_log;
+	t_event_log			event_log;
 }	t_simulation;
 
 t_error	simulation_new(t_config config, t_simulation *simulation_out);

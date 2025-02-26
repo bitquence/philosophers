@@ -84,7 +84,7 @@ static t_error	populate_philosophers(t_simulation *sim, uint32_t count)
 			.sim_state_mtx = &sim->sim_state_mtx,
 			.sim_state = &sim->sim_state,
 			.event_log_mtx = &sim->event_log_mtx,
-			.event_log = sim->event_log,
+			.event_log = &sim->event_log,
 		};
 		i++;
 	}
