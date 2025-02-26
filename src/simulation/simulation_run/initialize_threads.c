@@ -43,6 +43,16 @@ static void	destroy_threads(t_simulation *sim, size_t thread_count)
 	sim->handles = NULL;
 }
 
+static void swap_forks_around(t_philosopher *philosopher)
+{
+	if (philosopher->id % 2 == 0)
+	{
+		pthread_mutex_t *tmp = philosopher->left;
+		philosopher->left = philosopher->right;
+		philosopher->right = tmp;
+	}
+}
+
 static t_error	make_threads(t_simulation *sim, size_t *made_n_threads_out)
 {
 	const size_t		count = sim->config.philosopher_count;
@@ -60,6 +70,7 @@ static t_error	make_threads(t_simulation *sim, size_t *made_n_threads_out)
 		handle = &sim->handles[i];
 		philosopher = &sim->philosophers[i];
 		routine = (t_pthread_routine)philosophize;
+		swap_forks_around(philosopher);
 		if (pthread_create(handle, NULL, routine, philosopher) != 0)
 		{
 			*made_n_threads_out = i;
