@@ -1,6 +1,7 @@
 #include "../simulation.h"
 #include "../philosopher/t_philosopher.h"
 #include "simulation/t_simulation_state.h"
+#include "time/instant.h"
 
 #include <pthread.h>
 #include <stdlib.h>
@@ -21,6 +22,7 @@ t_error	initialize_threads(t_simulation *sim)
 		sim->sim_state = SIMULATION_TERMINATED;
 	else
 		sim->sim_state = SIMULATION_STARTED;
+	sim->simulation_start = instant_now();
 	pthread_mutex_unlock(&sim->sim_state_mtx);
 	if (err != NO_ERROR)
 		destroy_threads(sim, initialized_thread_count);

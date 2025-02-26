@@ -5,12 +5,14 @@
 # include "event/t_event_log.h"
 # include "config/config.h"
 # include "philosopher/t_philosopher.h"
+# include "time/instant.h"
 # include "./t_simulation_state.h"
 
 # include <pthread.h>
 
 typedef struct s_simulation {
 	t_config			config;
+	t_instant			simulation_start;
 	pthread_mutex_t		*forks;
 	pthread_t			*handles;
 	t_philosopher		*philosophers;
