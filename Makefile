@@ -18,10 +18,15 @@ CFLAGS += -Wall -Wextra -Werror -MMD -MP $(ENABLE_OPTIMIZATIONS) $(ADD_DEBUGGING
 
 SRCS := $(NAME).c \
 	config/config.c config/parse_uint32.c \
+	event/t_event_log.c event/t_event_node.c event/event_new.c \
+	time/instant_now.c time/duration_since.c \
 	simulation/simulation_new.c simulation/assign_forks.c simulation/simulation_destroy.c \
 	simulation/simulation_run/initialize_threads.c simulation/simulation_run/simulation_run.c \
 	simulation/simulation_run/watch_simulation.c simulation/simulation_run/end_simulation.c \
-	simulation/philosopher/philosophize.c
+	simulation/philosopher/philosophize.c \
+	simulation/philosopher/actions.c simulation/philosopher/report_error.c \
+	simulation/philosopher/transition.c simulation/philosopher/simulation_state.c \
+	simulation/philosopher/philosopher_sleep.c
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)

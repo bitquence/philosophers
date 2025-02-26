@@ -5,6 +5,7 @@
 # include "config/config.h"
 # include "event/t_event_log.h"
 # include "../t_simulation_state.h"
+# include "./t_philosopher_state.h"
 
 # include <pthread.h>
 # include <stdint.h>
@@ -13,6 +14,7 @@
 typedef struct s_philosopher {
 	uint32_t			id;
 	const t_config		*config;
+	t_philosopher_state	state;
 
 	pthread_mutex_t		*last_error_mtx;
 	t_error				last_error;
@@ -27,6 +29,6 @@ typedef struct s_philosopher {
 	pthread_mutex_t		*right;
 }	t_philosopher;
 
-void	*philosophize(t_philosopher *self);
+void		*philosophize(t_philosopher *self);
 
 #endif // T_PHILOSOPHER_H
