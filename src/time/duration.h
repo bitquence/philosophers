@@ -1,0 +1,12 @@
+#ifndef INSTANT_H
+# define INSTANT_H
+
+# include "./instant.h"
+
+# include <stdint.h>
+
+typedef uint64_t	t_duration;
+
+t_duration	duration_since(t_instant from, t_instant to);
+
+#endif // INSTANT_H
