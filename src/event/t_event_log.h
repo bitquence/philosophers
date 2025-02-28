@@ -14,6 +14,7 @@ typedef struct s_event_log {
 }	t_event_log;
 
 t_error	event_log_append(t_event_log *log, t_event event);
+void	event_log_append_node(t_event_log *log, t_event_node *new_node);
 bool	event_log_pop(t_event_log *log, t_event *event_out);
 
 #endif // T_EVENT_LOG_H
