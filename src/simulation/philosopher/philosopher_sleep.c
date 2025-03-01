@@ -26,7 +26,7 @@ void	philosopher_sleep(t_philosopher *self, uint32_t ms_duration)
 		if (simulation_terminated(self))
 			break;
 		now = instant_now();
-		if (duration_since(start, now) > duration)
+		if ((uint64_t)duration_since(start, now) > duration)
 			break;
 		usleep(SLEEP_INTERVAL_USECONDS);
 	}
