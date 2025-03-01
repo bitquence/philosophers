@@ -1,6 +1,8 @@
 #include "t_event_log.h"
 #include "event/t_event_node.h"
 
+#include <stddef.h>
+
 t_error	event_log_append(t_event_log *log, t_event event)
 {
 	t_event_node	*new_node;
