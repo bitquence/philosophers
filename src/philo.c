@@ -33,5 +33,4 @@ int	main(int argc, char *argv[])
 	simulation_destroy(&sim);
 	if (err != NO_ERROR)
 		return (EXIT_FAILURE);
-	printf("%s %u %u %u %u %u\n", argv[0], config.philosopher_count, config.time_to_die, config.time_to_eat, config.time_to_sleep, config.min_meals);
 }
