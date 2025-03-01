@@ -38,6 +38,6 @@ t_error	config_from_args(int argc, char *argv[], t_config *cfg_out)
 		return (err);
 	cfg_out->count_meals = (argc == 6);
 	if (cfg_out->count_meals)
-		err = parse_uint32(argv[4], &cfg_out->min_meals);
+		err = parse_uint32(argv[5], &cfg_out->min_meals);
 	return (err);
 }
