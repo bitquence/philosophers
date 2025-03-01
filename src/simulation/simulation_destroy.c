@@ -6,15 +6,13 @@
 #include <stdint.h>
 #include <pthread.h>
 
-void		event_log_clear(t_event_log **self);
-
 static void	destroy_forks(pthread_mutex_t **forks, uint32_t count);
 static void	destroy_arrays(pthread_t **handles, t_philosopher **philosophers);
 static void	destroy_mutexes(t_simulation *sim);
 
 void	simulation_destroy(t_simulation *sim)
 {
-	//event_log_clear(&sim->event_log);
+	event_log_clear(&sim->event_log);
 	destroy_forks(&sim->forks, sim->config.philosopher_count);
 	destroy_arrays(&sim->handles, &sim->philosophers);
 	destroy_mutexes(sim);

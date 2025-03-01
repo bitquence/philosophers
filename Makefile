@@ -18,7 +18,8 @@ CFLAGS += -Wall -Wextra -Werror -MMD -MP $(ENABLE_OPTIMIZATIONS) $(ADD_DEBUGGING
 
 SRCS := $(NAME).c \
 	config/config.c config/parse_uint32.c \
-	event/t_event_log.c event/t_event_node.c event/event_new.c \
+	event/t_event_log.c event/event_log_clear.c \
+	event/t_event_node.c event/event_new.c \
 	time/instant_now.c time/duration_since.c \
 	simulation/simulation_new.c simulation/assign_forks.c simulation/simulation_destroy.c \
 	simulation/simulation_run/initialize_threads.c simulation/simulation_run/simulation_run.c \
