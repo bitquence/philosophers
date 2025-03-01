@@ -17,9 +17,6 @@ typedef struct s_simulation {
 	pthread_t			*handles;
 	t_philosopher		*philosophers;
 
-	pthread_mutex_t		last_error_mtx;
-	t_error				last_error;
-
 	pthread_mutex_t		sim_state_mtx;
 	t_simulation_state	sim_state;
 

@@ -41,28 +41,18 @@ static t_error	make_mutexes(t_simulation *sim, t_simulation_state state)
 {
 	int		ret;
 
-	ret = pthread_mutex_init(&sim->last_error_mtx, NULL);
-	if (ret != 0)
-		return (E_PTHREAD_MUTEX_INIT);
 	ret = pthread_mutex_init(&sim->sim_state_mtx, NULL);
 	if (ret != 0)
-	{
-		pthread_mutex_destroy(&sim->last_error_mtx);
 		return (E_PTHREAD_MUTEX_INIT);
-	}
 	ret = pthread_mutex_init(&sim->event_log_mtx, NULL);
 	if (ret != 0)
 	{
-		pthread_mutex_destroy(&sim->last_error_mtx);
 		pthread_mutex_destroy(&sim->sim_state_mtx);
 		return (E_PTHREAD_MUTEX_INIT);
 	}
 	pthread_mutex_lock(&sim->sim_state_mtx);
 	sim->sim_state = state;
 	pthread_mutex_unlock(&sim->sim_state_mtx);
-	pthread_mutex_lock(&sim->last_error_mtx);
-	sim->last_error = NO_ERROR;
-	pthread_mutex_unlock(&sim->last_error_mtx);
 	return (NO_ERROR);
 }
 
@@ -79,8 +69,6 @@ static t_error	populate_philosophers(t_simulation *sim, uint32_t count)
 		sim->philosophers[i] = (t_philosopher){
 			.id = i + 1,
 			.config = &sim->config,
-			.last_error_mtx = &sim->last_error_mtx,
-			.last_error = NO_ERROR,
 			.sim_state_mtx = &sim->sim_state_mtx,
 			.sim_state = &sim->sim_state,
 			.event_log_mtx = &sim->event_log_mtx,

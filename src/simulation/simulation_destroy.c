@@ -46,7 +46,6 @@ static void	destroy_arrays(pthread_t **handles, t_philosopher **philosophers)
 
 static void	destroy_mutexes(t_simulation *sim)
 {
-	pthread_mutex_destroy(&sim->last_error_mtx);
 	pthread_mutex_destroy(&sim->sim_state_mtx);
 	pthread_mutex_destroy(&sim->event_log_mtx);
 }

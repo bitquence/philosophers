@@ -23,8 +23,7 @@ SRCS := $(NAME).c \
 	simulation/simulation_new.c simulation/assign_forks.c simulation/simulation_destroy.c \
 	simulation/simulation_run/initialize_threads.c simulation/simulation_run/simulation_run.c \
 	simulation/simulation_run/watch_simulation.c simulation/simulation_run/end_simulation.c \
-	simulation/philosopher/philosophize.c \
-	simulation/philosopher/actions.c simulation/philosopher/report_error.c \
+	simulation/philosopher/philosophize.c simulation/philosopher/actions.c \
 	simulation/philosopher/transition.c simulation/philosopher/simulation_state.c \
 	simulation/philosopher/philosopher_sleep.c
 

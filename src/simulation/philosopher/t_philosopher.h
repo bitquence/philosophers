@@ -16,9 +16,6 @@ typedef struct s_philosopher {
 	const t_config		*config;
 	t_philosopher_state	state;
 
-	pthread_mutex_t		*last_error_mtx;
-	t_error				last_error;
-
 	pthread_mutex_t		*sim_state_mtx;
 	t_simulation_state	*sim_state;
 

@@ -10,6 +10,7 @@
 #include <stdio.h> // tmp
 
 static t_error	run_philosopher_loop(t_philosopher *self);
+static void		terminate_simulation(t_philosopher *self);
 
 void	*philosophize(t_philosopher *self)
 {
@@ -19,9 +20,15 @@ void	*philosophize(t_philosopher *self)
 		usleep(5 * 1000);
 	err = run_philosopher_loop(self);
 	if (err != NO_ERROR)
-		philosopher_report_error(self, err);
-	printf("died\n");
-	return (NULL);
+		terminate_simulation(self);
+	return ((void *)err);
+}
+
+static void	terminate_simulation(t_philosopher *self)
+{
+	pthread_mutex_lock(self->sim_state_mtx);
+	*self->sim_state = SIMULATION_TERMINATED;
+	pthread_mutex_unlock(self->sim_state_mtx);
 }
 
 static t_error run_philosopher_loop(t_philosopher *self)
