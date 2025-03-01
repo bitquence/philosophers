@@ -30,13 +30,13 @@ static void	set_terminated(pthread_mutex_t *m, t_simulation_state *state)
 
 static t_error	wait_for_all_threads(pthread_t *handles, uint32_t count)
 {
-	size_t	i;
-	t_error	err;
-	void	**err_location;
+	size_t		i;
+	uintptr_t	err;
+	void		**err_location;
 
 	i = 0;
-	err = NO_ERROR;
-	err_location = (void**)&err;
+	err = 0;
+	err_location = (void **)&err;
 	while (i < count)
 	{
 		pthread_join(handles[i], err_location);
@@ -44,5 +44,5 @@ static t_error	wait_for_all_threads(pthread_t *handles, uint32_t count)
 			err_location = NULL;
 		i++;
 	}
-	return (err);
+	return ((t_error)err);
 }
