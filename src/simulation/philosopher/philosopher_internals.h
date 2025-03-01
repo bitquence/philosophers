@@ -3,12 +3,16 @@
 
 # include "./t_philosopher.h"
 
+# include "t_error/t_error.h"
+
+# include <stdbool.h>
+
 bool	simulation_pending(t_philosopher *self);
 bool	simulation_started(t_philosopher *self);
 bool	simulation_terminated(t_philosopher *self);
 
 void	philosopher_report_error(t_philosopher *self, t_error err);
-void	philosopher_sleep(t_philosopher *self, uint32_t ms_duration);
+bool	philosopher_sleep(t_philosopher *self, uint32_t ms_duration);
 t_error	philosopher_transition(t_philosopher *self, t_philosopher_state new);
 
 t_error	think_and_take_left_fork(t_philosopher *self);

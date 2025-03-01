@@ -27,7 +27,8 @@ t_error	take_right_fork(t_philosopher *self)
 
 t_error	eat(t_philosopher *self)
 {
-	philosopher_sleep(self, self->config->time_to_eat);
+	if (philosopher_sleep(self, self->config->time_to_eat))
+		return (NO_ERROR);
 	pthread_mutex_unlock(self->right);
 	pthread_mutex_unlock(self->left);
 	return (philosopher_transition(self, SLEEPING));
@@ -35,7 +36,8 @@ t_error	eat(t_philosopher *self)
 
 t_error	sleep_to_go_again(t_philosopher *self)
 {
-	philosopher_sleep(self, self->config->time_to_sleep);
+	if (philosopher_sleep(self, self->config->time_to_sleep))
+		return (NO_ERROR);
 	return (philosopher_transition(self, THINKING));
 }
 
