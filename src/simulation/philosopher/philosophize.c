@@ -17,7 +17,7 @@ void	*philosophize(t_philosopher *self)
 	t_error	err;
 
 	while (simulation_pending(self))
-		usleep(5 * 1000);
+		usleep(1000);
 	err = run_philosopher_loop(self);
 	if (err != NO_ERROR)
 		terminate_simulation(self);
