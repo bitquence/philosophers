@@ -17,7 +17,7 @@ CFLAGS += -Wall -Wextra -Werror -MMD -MP $(ENABLE_OPTIMIZATIONS) $(ADD_DEBUGGING
 #LDLIBS :=
 
 SRCS := $(NAME).c \
-	t_error/err_representation.c \
+	t_error/err_representation.c t_error/log.c \
 	config/config.c config/parse_uint32.c \
 	event/t_event_log.c event/event_log_clear.c \
 	event/t_event_node.c event/event_new.c \

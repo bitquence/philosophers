@@ -29,5 +29,6 @@ typedef enum e_error {
 }	t_error;
 
 const char	*err_representation(t_error err);
+void		log_error(t_error err);
 
 #endif // T_ERROR_H
