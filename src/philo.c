@@ -17,6 +17,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+static t_error	validate_config(const t_config *c)
+{
+	if (c->philosopher_count == 0)
+		return E_BAD_USAGE;
+	if (c->time_to_eat < 30)
+		return E_BAD_USAGE;
+	if (c->time_to_sleep < 30)
+		return E_BAD_USAGE;
+	return (NO_ERROR);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_error			err;
@@ -25,12 +36,15 @@ int	main(int argc, char *argv[])
 
 	err = config_from_args(argc, argv, &config);
 	if (err != NO_ERROR)
-		return (EXIT_FAILURE);
+		return (log_error(err), EXIT_FAILURE);
+	err = validate_config(&config);
+	if (err != NO_ERROR)
+		return (log_error(err), EXIT_FAILURE);
 	err = simulation_new(config, &sim);
 	if (err != NO_ERROR)
-		return (EXIT_FAILURE);
+		return (log_error(err), EXIT_FAILURE);
 	err = simulation_run(&sim);
 	simulation_destroy(&sim);
 	if (err != NO_ERROR)
-		return (EXIT_FAILURE);
+		return (log_error(err), EXIT_FAILURE);
 }
