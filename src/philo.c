@@ -47,4 +47,5 @@ int	main(int argc, char *argv[])
 	simulation_destroy(&sim);
 	if (err != NO_ERROR)
 		return (log_error(err), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
