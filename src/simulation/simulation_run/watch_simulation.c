@@ -8,6 +8,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 static bool	all_philosophers_fed(t_simulation *sim);
 static bool	should_continue(t_simulation *sim);
@@ -24,7 +25,10 @@ t_error	watch_simulation(t_simulation *sim)
 		return (err);
 	philosophers_died = false;
 	while (!philosophers_died && should_continue(sim))
+	{
 		philosophers_died = process_incoming_events(sim);
+		usleep(50);
+	}
 	if (err != NO_ERROR)
 		return (err);
 	return (NO_ERROR);
