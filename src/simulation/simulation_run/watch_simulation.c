@@ -1,4 +1,5 @@
 #include "../simulation.h"
+#include "./simulation_run_internals.h"
 
 #include "event/t_event_log.h"
 
@@ -10,19 +11,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-static const char *state_action(t_philosopher_state st)
-{
-	if (st == HOLDING_LFORK)
-		return "has taken a fork";
-	if (st == EATING)
-		return "is eating";
-	if (st == SLEEPING)
-		return "is sleeping";
-	if (st == THINKING)
-		return "is thinking";
-	return (NULL);
-}
 
 static t_error init_variables(t_simulation *sim)
 {
@@ -102,33 +90,26 @@ bool	should_continue(t_simulation *sim)
 
 static bool process_incoming_events(t_simulation *sim)
 {
-	t_event event;
-	uint32_t dead_philosopher;
+	t_event		event;
+	uint32_t	dead_philosopher;
+	bool		got;
 
 	pthread_mutex_lock(&sim->event_log_mtx);
-	bool got  = event_log_pop(&sim->event_log, &event);
+	got = event_log_pop(&sim->event_log, &event);
 	while (got)
 	{
-		t_duration	timestamp = duration_since_ms(sim->simulation_start, event.timestamp);
-
 		if (event.new_state == EATING)
 		{
 			sim->last_meals[event.philosopher_id - 1] = event.timestamp;
 			sim->meal_count[event.philosopher_id - 1] += 1;
 		}
-		if (event.new_state == EATING)
-		{
-			printf("%06lld %d %s\n", timestamp, event.philosopher_id, state_action(HOLDING_LFORK));
-		}
-
-		printf("%06lld %d %s\n", timestamp, event.philosopher_id, state_action(event.new_state));
-		got  = event_log_pop(&sim->event_log, &event);
+		log_state_change(sim, event);
+		got = event_log_pop(&sim->event_log, &event);
 	}
 	pthread_mutex_unlock(&sim->event_log_mtx);
 	if (any_philosophers_died(sim, instant_now(), &dead_philosopher))
 	{
-		t_duration	timestamp = duration_since_ms(sim->simulation_start, instant_now());
-		printf("%06lld %d died\n", timestamp, dead_philosopher);
+		log_death(sim, instant_now(), dead_philosopher);
 		return true;
 	}
 	return (false);
