@@ -24,7 +24,7 @@ static void	assign_many_forks(t_simulation *sim)
 	size_t			i;
 
 	i = 0;
-	while (i < count - 1)
+	while (i + 1 < count)
 	{
 		sim->philosophers[i].left = &sim->forks[i];
 		sim->philosophers[i].right = &sim->forks[i + 1];
