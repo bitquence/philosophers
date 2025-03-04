@@ -12,12 +12,12 @@
 
 t_error	think_and_take_left_fork(t_philosopher *self)
 {
-	int32_t duration = (int32_t)self->config->time_to_sleep + (int32_t)self->config->time_to_eat;
-	//uint32_t final = duration / 10;
-	uint32_t final = ( duration / 3.0f);
+	uint32_t duration;
+
+	duration = self->config->time_to_sleep + self->config->time_to_eat;
 	if (!self->ate && self->id % 2 != 0)
 	{
-		if (philosopher_sleep(self, final))
+		if (philosopher_sleep(self, duration / 3.0f))
 			return (NO_ERROR);
 	}
 	pthread_mutex_lock(self->left);
