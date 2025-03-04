@@ -15,7 +15,7 @@ t_error	think_and_take_left_fork(t_philosopher *self)
 	uint32_t duration;
 
 	duration = self->config->time_to_sleep + self->config->time_to_eat;
-	if ((!self->ate && self->id % 2 != 0) || (self->config->philosopher_count % 2 == 1))
+	if ((!self->ate && self->id % 2 != 0) || (self->ate && self->config->philosopher_count % 2 == 1))
 	{
 		if (philosopher_sleep(self, duration / 3.0f))
 			return (NO_ERROR);
