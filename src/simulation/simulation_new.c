@@ -94,7 +94,7 @@ static t_error	make_forks(pthread_mutex_t **forks, uint32_t count)
 		if (ret != 0)
 		{
 			partially_destroy_forks(forks, i);
-			return (E_PTHREAD_MUTEX_DESTROY);
+			return (E_PTHREAD_MUTEX_INIT);
 		}
 		i++;
 	}
