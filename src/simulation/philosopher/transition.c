@@ -15,7 +15,7 @@ t_error	philosopher_transition(t_philosopher *self, t_philosopher_state new)
 	node = evl_new((t_event){.philosopher_id = self->id, .new_state = new});
 	if (!node)
 		return (E_MALLOC);
-	node->event.timestamp = instant_now();
+	node->event.timestamp = instant_now(); // tmp: this goes inside the critical section perhaps??
 	pthread_mutex_lock(self->event_log_mtx);
 	event_log_append_node(self->event_log, node);
 	pthread_mutex_unlock(self->event_log_mtx);
