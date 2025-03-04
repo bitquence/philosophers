@@ -16,7 +16,7 @@
 typedef enum e_error {
 	NO_ERROR = 0,
 	E_BAD_USAGE,
-	E_INVALID_ARGUMENT,
+	E_EXPECTED_NUM,
 	E_OUT_OF_RANGE,
 	E_UNMATCHED_PATTERN,
 	// system calls

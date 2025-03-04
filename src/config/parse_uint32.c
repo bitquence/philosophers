@@ -16,7 +16,7 @@ t_error	parse_uint32(const char *str, uint32_t *result_out)
 
 	i = 0;
 	if (!is_valid_number(str))
-		return (E_INVALID_ARGUMENT);
+		return (E_EXPECTED_NUM);
 	*result_out = 0;
 	while (is_digit(str[i]))
 	{
