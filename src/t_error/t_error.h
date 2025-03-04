@@ -28,4 +28,6 @@ typedef enum e_error {
 	E_MALLOC,
 }	t_error;
 
+const char	*err_representation(t_error err);
+
 #endif // T_ERROR_H
