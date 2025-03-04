@@ -7,14 +7,14 @@
 #include <pthread.h>
 
 static void	destroy_forks(pthread_mutex_t **forks, uint32_t count);
-static void	destroy_arrays(pthread_t **handles, t_philosopher **philosophers);
+static void	destroy_arrays(t_simulation *sim);
 static void	destroy_mutexes(t_simulation *sim);
 
 void	simulation_destroy(t_simulation *sim)
 {
 	event_log_clear(&sim->event_log);
 	destroy_forks(&sim->forks, sim->config.philosopher_count);
-	destroy_arrays(&sim->handles, &sim->philosophers);
+	destroy_arrays(sim);
 	destroy_mutexes(sim);
 }
 
@@ -34,12 +34,16 @@ static void	destroy_forks(pthread_mutex_t **forks, uint32_t count)
 	*forks = NULL;
 }
 
-static void	destroy_arrays(pthread_t **handles, t_philosopher **philosophers)
+static void	destroy_arrays(t_simulation *sim)
 {
-	free(*handles);
-	*handles = NULL;
-	free(*philosophers);
-	*philosophers = NULL;
+	free(sim->handles);
+	sim->handles = NULL;
+	free(sim->philosophers);
+	sim->philosophers = NULL;
+	free(sim->last_meals);
+	sim->last_meals = NULL;
+	free(sim->meal_count);
+	sim->meal_count = NULL;
 }
 
 static void	destroy_mutexes(t_simulation *sim)

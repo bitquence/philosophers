@@ -12,10 +12,14 @@
 
 typedef struct s_simulation {
 	t_config			config;
-	t_instant			simulation_start;
+
 	pthread_mutex_t		*forks;
 	pthread_t			*handles;
 	t_philosopher		*philosophers;
+
+	t_instant			*last_meals;
+	unsigned int		*meal_count;
+	t_instant			simulation_start;
 
 	pthread_mutex_t		sim_state_mtx;
 	t_simulation_state	sim_state;
