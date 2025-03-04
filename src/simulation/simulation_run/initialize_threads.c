@@ -67,7 +67,7 @@ static t_error	make_threads(t_simulation *sim, size_t *made_n_threads_out)
 		handle = &sim->handles[i];
 		philosopher = &sim->philosophers[i];
 		routine = (t_pthread_routine)philosophize;
-		if (i % 2 == 1)
+		if (i == 1)
 			swap_forks_around(philosopher);
 		if (pthread_create(handle, NULL, routine, philosopher) != 0)
 		{
