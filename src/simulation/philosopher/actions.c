@@ -5,11 +5,21 @@
 #include "./t_philosopher_state.h"
 
 #include <pthread.h>
+#include <stdint.h>
+
+#define ESTIMATED_SLEEP_OVERHEAD_MS 1
+
 
 t_error	think_and_take_left_fork(t_philosopher *self)
 {
-	float duration = ( (float)self->config->time_to_die / 5 );
-	philosopher_sleep(self, ( duration / self->config->philosopher_count ) * self->id);
+	int32_t duration = (int32_t)self->config->time_to_sleep + (int32_t)self->config->time_to_eat;
+	//uint32_t final = duration / 10;
+	uint32_t final = ( duration / 3.0f);
+	if (!self->ate && self->id % 2 != 0)
+	{
+		if (philosopher_sleep(self, final))
+			return (NO_ERROR);
+	}
 	pthread_mutex_lock(self->left);
 	return (philosopher_transition(self, HOLDING_LFORK));
 }
@@ -31,6 +41,7 @@ t_error	eat(t_philosopher *self)
 		return (NO_ERROR);
 	pthread_mutex_unlock(self->right);
 	pthread_mutex_unlock(self->left);
+	self->ate = true;
 	return (philosopher_transition(self, SLEEPING));
 }
 

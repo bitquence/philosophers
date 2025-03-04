@@ -15,6 +15,7 @@ typedef struct s_philosopher {
 	uint32_t			id;
 	const t_config		*config;
 	t_philosopher_state	state;
+	bool				ate;
 
 	pthread_mutex_t		*sim_state_mtx;
 	t_simulation_state	*sim_state;
