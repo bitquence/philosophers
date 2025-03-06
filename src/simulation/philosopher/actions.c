@@ -27,10 +27,7 @@ t_error	think_and_take_left_fork(t_philosopher *self)
 t_error	take_right_fork(t_philosopher *self)
 {
 	if (!self->right)
-	{
-		unlock_mutexes_after_action(self);
-		pthread_exit(NULL);
-	}
+		return (E_NO_FORKS);
 	pthread_mutex_lock(self->right);
 	return (philosopher_transition(self, EATING));
 }

@@ -19,9 +19,12 @@ void	*philosophize(t_philosopher *self)
 	while (simulation_pending(self))
 		usleep(1000);
 	err = run_philosopher_loop(self);
-	if (err != NO_ERROR)
+	if (err != NO_ERROR && err != E_NO_FORKS)
+	{
 		terminate_simulation(self);
-	return ((void *)err);
+		return ((void *)err);
+	}
+	return ((void *)NO_ERROR);
 }
 
 static void	terminate_simulation(t_philosopher *self)
