@@ -29,8 +29,6 @@ t_error	watch_simulation(t_simulation *sim)
 		philosophers_died = process_incoming_events(sim);
 		usleep(50);
 	}
-	if (err != NO_ERROR)
-		return (err);
 	return (NO_ERROR);
 }
 
