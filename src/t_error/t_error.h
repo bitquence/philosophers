@@ -18,6 +18,7 @@ typedef enum e_error {
 	E_BAD_USAGE,
 	E_EXPECTED_NUM,
 	E_OUT_OF_RANGE,
+	E_NO_FORKS,
 	E_UNMATCHED_PATTERN,
 	// system calls
 	E_PTHREAD_MUTEX_INIT,
