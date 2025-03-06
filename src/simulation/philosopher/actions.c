@@ -7,15 +7,16 @@
 #include <pthread.h>
 #include <stdint.h>
 
-#define ESTIMATED_SLEEP_OVERHEAD_MS 1
-
-
 t_error	think_and_take_left_fork(t_philosopher *self)
 {
-	uint32_t duration;
+	uint32_t	duration;
+	bool		are_we_odd;
+	bool		simulation_is_odd;
 
 	duration = self->config->time_to_sleep + self->config->time_to_eat;
-	if ((!self->ate && self->id % 2 != 0) || (self->ate && self->config->philosopher_count % 2 == 1))
+	are_we_odd = (self->id % 2 != 0);
+	simulation_is_odd = (self->config->philosopher_count % 2 != 0);
+	if ((!self->ate && are_we_odd) || (self->ate && simulation_is_odd))
 	{
 		if (philosopher_sleep(self, duration / 3.0f))
 			return (NO_ERROR);
