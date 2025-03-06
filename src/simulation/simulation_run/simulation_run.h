@@ -6,6 +6,6 @@
 
 t_error	initialize_threads(t_simulation *sim);
 t_error	watch_simulation(t_simulation *sim);
-void	end_simulation(t_simulation *sim);
+t_error	end_simulation(t_simulation *sim);
 
 #endif // SIMULATION_RUN_H
